@@ -102,10 +102,26 @@
             </div>
           </div>
 
-          <!-- Coluna da Foto dos 2: BEM GRANDE, LIMPA E EM DESTAQUE MÁXIMO -->
+          <!-- Coluna da Foto dos 2: BEM GRANDE, INTERATIVA COM ANIMAÇÃO DE ZOOM E NOMES -->
           <div class="hero-photo-column">
-            <div class="founders-clean-wrap">
-              <img src="assets/team_founders.png" alt="Sócios e Fundadores da Klik" class="founders-clean-img" width="1050" height="822">
+            <div class="founders-clean-wrap" id="founders-interactive-wrap">
+              <img src="assets/team_founders.png" alt="Sócios e Fundadores da Klik" class="founders-clean-img" id="founders-main-img" width="1050" height="822">
+
+              <!-- Zonas Interativas Transparentes para Hover Individual -->
+              <div class="founder-hover-zone zone-arthur" id="zone-arthur" aria-label="Arthur - Sócio e Desenvolvedor"></div>
+              <div class="founder-hover-zone zone-gabriel" id="zone-gabriel" aria-label="Gabriel - Sócio e Desenvolvedor"></div>
+
+              <!-- Badges com os nomes que surgem elegantemente no hover -->
+              <div class="founder-name-tag tag-arthur" id="name-arthur">
+                <span class="tag-role">Sócio &bull; Engenharia</span>
+                <span class="tag-name">Arthur</span>
+              </div>
+
+              <div class="founder-name-tag tag-gabriel" id="name-gabriel">
+                <span class="tag-role">Sócio &bull; Estratégia</span>
+                <span class="tag-name">Gabriel</span>
+              </div>
+
               <div class="founders-clean-fade"></div>
             </div>
           </div>
@@ -445,6 +461,31 @@
       const texto = `Olá! Meu nome é ${nome} (${area || 'Serviços'}). Gostaria de solicitar uma proposta para meu site com a Klik! Meu WhatsApp: ${zap}`;
       window.open(`https://wa.me/5531972247907?text=${encodeURIComponent(texto)}`, '_blank');
     });
+
+    // Interatividade Especial de Hover: Arthur & Gabriel (Expansão para 1100px com animação e nomes)
+    const wrap = document.getElementById('founders-interactive-wrap');
+    const zoneArthur = document.getElementById('zone-arthur');
+    const zoneGabriel = document.getElementById('zone-gabriel');
+
+    if (wrap && zoneArthur && zoneGabriel) {
+      // Hover no Arthur (esquerda)
+      zoneArthur.addEventListener('mouseenter', () => {
+        wrap.classList.add('hover-active', 'hover-arthur');
+        wrap.classList.remove('hover-gabriel');
+      });
+      zoneArthur.addEventListener('mouseleave', () => {
+        wrap.classList.remove('hover-active', 'hover-arthur');
+      });
+
+      // Hover no Gabriel (direita)
+      zoneGabriel.addEventListener('mouseenter', () => {
+        wrap.classList.add('hover-active', 'hover-gabriel');
+        wrap.classList.remove('hover-arthur');
+      });
+      zoneGabriel.addEventListener('mouseleave', () => {
+        wrap.classList.remove('hover-active', 'hover-gabriel');
+      });
+    }
   </script>
 
 </body>

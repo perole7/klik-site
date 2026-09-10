@@ -290,7 +290,7 @@ body {
   color: var(--text-muted);
 }
 
-/* ÁREA DA FOTO DOS DOIS — 1000PX, ELEVADA PARA CIMA E IMPONENTE */
+/* ÁREA DA FOTO DOS DOIS — 1000PX BASE, ELEVADA, INTERATIVA ATÉ 1100PX NO HOVER */
 .hero-photo-column {
   position: relative;
   display: flex;
@@ -302,11 +302,17 @@ body {
 .founders-clean-wrap {
   position: relative;
   width: 100%;
-  max-width: 1000px; /* Expandido para 1000px conforme solicitado */
+  max-width: 1000px;
   margin: 0 auto;
-  overflow: hidden;
-  transform: translateY(-80px); /* Sobe substancialmente para preencher o espaço superior */
-  margin-bottom: -80px; /* Permite descer sem criar buraco vazio e sem ficar preso acima da linha */
+  overflow: visible; /* Permite os badges e expansão suave */
+  transform: translateY(-80px);
+  margin-bottom: -80px;
+  transition: max-width 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Quando o mouse passa por qualquer um dos dois, a foto expande para 1100px */
+.founders-clean-wrap.hover-active {
+  max-width: 1100px;
 }
 
 .founders-clean-img {
@@ -317,8 +323,100 @@ body {
   position: relative;
   z-index: 1;
   filter: contrast(1.03) brightness(1.02);
-  transform: scale(1.12); /* Escala ampliada para preencher perfeitamente */
+  transform: scale(1.12);
   transform-origin: center bottom;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+}
+
+/* Foco e escala aprimorada quando hover no Arthur (esquerda) */
+.founders-clean-wrap.hover-arthur .founders-clean-img {
+  transform: scale(1.18) translateX(10px);
+  transform-origin: 28% bottom;
+}
+
+/* Foco e escala aprimorada quando hover no Gabriel (direita) */
+.founders-clean-wrap.hover-gabriel .founders-clean-img {
+  transform: scale(1.18) translateX(-10px);
+  transform-origin: 72% bottom;
+}
+
+/* Zonas Interativas Invisíveis de Hover sobre cada pessoa */
+.founder-hover-zone {
+  position: absolute;
+  top: 0;
+  bottom: 15%;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.zone-arthur {
+  left: 0;
+  width: 48%;
+}
+
+.zone-gabriel {
+  right: 0;
+  width: 52%;
+}
+
+/* Tags de Nome Sofisticadas e Elegantes */
+.founder-name-tag {
+  position: absolute;
+  z-index: 12;
+  background: rgba(11, 14, 20, 0.92);
+  border: 1px solid rgba(229, 169, 60, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 8px 18px;
+  border-radius: 999px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 20px rgba(229, 169, 60, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.founder-name-tag .tag-role {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.founder-name-tag .tag-name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+}
+
+/* Posicionamento dos Badges */
+.tag-arthur {
+  top: 14%;
+  left: 14%;
+  transform: translateY(12px) scale(0.92);
+}
+
+.tag-gabriel {
+  top: 18%;
+  right: 18%;
+  transform: translateY(12px) scale(0.92);
+}
+
+/* Aparição suave no Hover */
+.founders-clean-wrap.hover-arthur .tag-arthur {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.founders-clean-wrap.hover-gabriel .tag-gabriel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 /* Fade suave na base */
