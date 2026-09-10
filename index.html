@@ -37,7 +37,7 @@
           </div>
         </a>
 
-        <!-- Menu de Navegação -->
+        <!-- Menu de Navegação Desktop -->
         <ul class="header-nav">
           <li><a href="#diferenciais">O que fazemos</a></li>
           <li><a href="#etapas">Processo</a></li>
@@ -45,11 +45,33 @@
           <li><a href="#duvidas">Dúvidas</a></li>
         </ul>
 
-        <!-- Botão de Ação -->
-        <a href="#orcamento" class="btn-header-cta">
-          <span>Solicitar Proposta</span>
-        </a>
+        <!-- Ações do Header -->
+        <div class="header-actions">
+          <a href="#orcamento" class="btn-header-cta">
+            <span>Solicitar Proposta</span>
+          </a>
+
+          <!-- Botão Hambúrguer para Mobile -->
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </div>
+    </div>
+
+    <!-- Gaveta de Navegação Mobile -->
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+      <ul class="mobile-nav-list">
+        <li><a href="#diferenciais" class="mobile-nav-link">O que fazemos</a></li>
+        <li><a href="#etapas" class="mobile-nav-link">Processo</a></li>
+        <li><a href="#socios" class="mobile-nav-link">Quem somos</a></li>
+        <li><a href="#duvidas" class="mobile-nav-link">Dúvidas</a></li>
+      </ul>
+      <a href="#orcamento" class="btn-main mobile-drawer-cta">
+        <span>Solicitar Proposta pelo WhatsApp</span>
+      </a>
     </div>
   </header>
 
@@ -484,6 +506,27 @@
       });
       zoneGabriel.addEventListener('mouseleave', () => {
         wrap.classList.remove('hover-active', 'hover-gabriel');
+      });
+    }
+
+    // Toggle do Menu Mobile
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const drawer = document.getElementById('mobile-nav-drawer');
+
+    if (menuBtn && drawer) {
+      menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('active');
+        drawer.classList.toggle('open');
+        document.body.classList.toggle('menu-locked');
+      });
+
+      // Fecha a gaveta ao clicar em um link
+      drawer.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menuBtn.classList.remove('active');
+          drawer.classList.remove('open');
+          document.body.classList.remove('menu-locked');
+        });
       });
     }
   </script>
