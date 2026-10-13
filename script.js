@@ -2,7 +2,7 @@
 
 const CONFIG = {
   // Número oficial de atendimento WhatsApp Klik
-  whatsappNumber: '5531972247907',
+  whatsappNumber: '5531991071561',
   // URL do Web App do Google Sheets para gravação dos leads na planilha
   googleSheetsUrl: 'https://script.google.com/macros/s/AKfycbzyVjoKCM4fO8084gW-xiNYKsNGXTkmOHv-LILKoYKu6jCW-ORRNt_gZCDSSClZfBDElg/exec',
   instagramUrl: 'https://instagram.com/klik.site',
